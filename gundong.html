@@ -1,150 +1,143 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-<title>手机端手势左右滑动</title>  
-<meta charset="UTF-8"/>  
-<meta name="viewport" content="width=device-width, initial-scale=1">  
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">  
-<script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>  
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>  
-</head>  
-<body>  
-<div data-role="page" class="hub" id="page1">  
-    <div data-role="content" id="cont1">  
-        <ul data-role="listview">  
-          <li><a href="#">语文<span class="ui-li-count">335</span></a></li>  
-          <li><a href="#">英语<span class="ui-li-count">123</span></a></li>  
-          <li><a href="#">数学<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">物理<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">化学<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">政治<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">毛概<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">中庸<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">论语<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">琴<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">棋<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">书<span class="ui-li-count">7</span></a></li>  
-          <li><a href="#">画<span class="ui-li-count">7</span></a></li>  
-        </ul>  
-    </div>  
-</div>  
-<div data-role="page" class="hub" id="page2">  
-    <div data-role="content">  
-        <ul data-role="listview" data-inset="true">  
-          <li><a href="#"><img src="/i/i01.png"></a></li>  
-          <li><a href="#"><img src="/i/i02.png"></a></li>  
-          <li><a href="#"><img src="/i/i03.png"></a></li>  
-          <li><a href="#"><img src="/i/i04.png"></a></li>  
-        </ul>  
-       <div data-role="controlgroup" data-type="horizontal">  
-        <a href="javascript:void(0)" onclick="getMore( 'load' );" data-role="button" data-icon="refresh">换一批</a>  
-        <a href="javascript:void(0)" onclick="getMore( 'all' );" data-role="button" data-icon="grid">更多</a>  
-      </div>  
-    </div>  
-</div>  
-<div data-role="page" class="hub" id="page3">  
-    <div data-role="content">  
-        这里是 page 3  
-    </div>  
-</div>  
-<div data-role="page" class="hub" id="page4">  
-    <div data-role="content">  
-        这里是 page 4  
-    </div>  
-</div>  
-  
-<div data-role="page" class="hub" id="page5">  
-    <div data-role="content">  
-        这里是 page 5  
-    </div>  
-</div>  
-  
-<div data-role="page" class="hub" id="page6">  
-    <div data-role="content">  
-        这里是 page 6  
-    </div>  
-</div>  
-  
-  
-<div data-role="page" class="hub" id="page7">  
-    <div data-role="content">  
-        这里是 page 7  
-    </div>  
-</div>  
-  
-<div data-role="page" class="hub" id="page8">  
-    <div data-role="content">  
-        这里是 page 8  
-    </div>  
-</div>  
-  
-<script type="text/javascript">  
-$(function() {  
-    //手势切换页面效果  
-   $( document ).find( 'div.hub' ).each(function( index ){  
-        $( "#page" + parseInt( index + 1 ) ).on( "swipeleft swiperight", function( event ) {  
-            dir = event.type === "swipeleft" ? "left" : "right",  
-            transition = $.support.cssTransform3d ? dir : false;  
-            if( false != transition )  
-            {  
-                if( 'left' == transition )  
-                {  
-                    var itemPage = '#page' + parseInt( index + 2 ); //设置下一个页面  
-                    $.mobile.changePage( itemPage , {transition:'slide' } );//jquery mobile 改变页面  + 特效  
-                }  
-                else if( 'right' == transition  )  
-                {  
-                    history.back( -1 );//后退  
-                }  
-            }  
-        });  
-    });  
-      
-   //页面滚动到底部加载更多事件  
-    $( window ).scroll(function(){  
-       if ( $(window).scrollTop() >= $(document).height() - $(window).height() )   
-       {  
-           var strAppend = '';  
-           for( var i = 1; i < 10; i++ )  
-           {  
-             strAppend += '<li><a href="#">我是追加 '+ i +'<span class="ui-li-count">'+ i +'</span></a></li>'  
-           }  
-           /*setTimeout( function(){  
-             $( '#page1 ul' ).append( strAppend );  
-             $( '#page1 ul' ).listview('refresh');  
-           } , '20000');*/  
-            $( '#page1 ul' ).append( strAppend ); //追加元素  
-            $( '#page1 ul' ).listview('refresh'); //渲染页面效果  
-       }  
-    });  
-});  
-  
-// 刷新功能/查看更多  
-function getMore( type )  
-{  
-    if(  'all' == type  )  
-    {  
-        var strAppend = '';  
-        for( var i = 4; i < 10; i++ )  
-        {  
-            strAppend += '<li><a href="#"><img src="/i/i0'+ i +'.png"></a></li>';  
-        }  
-        $( '#page2 ul' ).append( strAppend );//追加元素  
-        $( '#page2 ul' ).listview( 'refresh' );//渲染页面效果  
-    }  
-    else if( 'load' == type )  
-    {  
-        var strAppend = '<ul data-role="listview" data-inset="true">';  
-        for( var i = 4; i < 7; i++ )  
-        {  
-            strAppend += '<li><a href="#"><img src="/i/i0'+ i +'.png"></a></li>';  
-        }  
-        strAppend += '</ul>';  
-        $( '#page2 ul' ).remove();  
-        $( '#page2 [data-role="controlgroup"]' ).before( strAppend );//追加元素  
-        $( '#page2 [data-role="content"] ul' ).listview();//渲染页面效果  
-    }  
-}  
-</script>  
-</body>  
-</html>  
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>手机端手势左右滑动</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page" class="hub" id="page1">
+        <div data-role="content" id="cont1">
+            <ul data-role="listview">
+                <li><a href="#">语文<span class="ui-li-count">335</span></a></li>
+                <li><a href="#">英语<span class="ui-li-count">123</span></a></li>
+                <li><a href="#">数学<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">物理<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">化学<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">政治<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">毛概<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">中庸<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">论语<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">琴<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">棋<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">书<span class="ui-li-count">7</span></a></li>
+                <li><a href="#">画<span class="ui-li-count">7</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div data-role="page" class="hub" id="page2">
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#"><img src="/i/i01.png"></a></li>
+                <li><a href="#"><img src="/i/i02.png"></a></li>
+                <li><a href="#"><img src="/i/i03.png"></a></li>
+                <li><a href="#"><img src="/i/i04.png"></a></li>
+            </ul>
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="javascript:void(0)" onclick="getMore( 'load' );" data-role="button" data-icon="refresh">换一批</a>
+                <a href="javascript:void(0)" onclick="getMore( 'all' );" data-role="button" data-icon="grid">更多</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" class="hub" id="page3">
+        <div data-role="content">
+            这里是 page 3
+        </div>
+    </div>
+    <div data-role="page" class="hub" id="page4">
+        <div data-role="content">
+            这里是 page 4
+        </div>
+    </div>
+
+    <div data-role="page" class="hub" id="page5">
+        <div data-role="content">
+            这里是 page 5
+        </div>
+    </div>
+
+    <div data-role="page" class="hub" id="page6">
+        <div data-role="content">
+            这里是 page 6
+        </div>
+    </div>
+
+
+    <div data-role="page" class="hub" id="page7">
+        <div data-role="content">
+            这里是 page 7
+        </div>
+    </div>
+
+    <div data-role="page" class="hub" id="page8">
+        <div data-role="content">
+            这里是 page 8
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            //手势切换页面效果
+            $(document).find('div.hub').each(function(index) {
+                $("#page" + parseInt(index + 1)).on("swipeleft swiperight", function(event) {
+                    dir = event.type === "swipeleft" ? "left" : "right",
+                        transition = $.support.cssTransform3d ? dir : false;
+                    if (false != transition) {
+                        if ('left' == transition) {
+                            var itemPage = '#page' + parseInt(index + 2); //设置下一个页面
+                            $.mobile.changePage(itemPage, {
+                                transition: 'slide'
+                            }); //jquery mobile 改变页面  + 特效
+                        } else if ('right' == transition) {
+                            history.back(-1); //后退
+                        }
+                    }
+                });
+            });
+
+            //页面滚动到底部加载更多事件
+            $(window).scroll(function() {
+                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+                    var strAppend = '';
+                    for (var i = 1; i < 10; i++) {
+                        strAppend += '<li><a href="#">我是追加 ' + i + '<span class="ui-li-count">' + i + '</span></a></li>'
+                    }
+                    /*setTimeout( function(){
+                      $( '#page1 ul' ).append( strAppend );
+                      $( '#page1 ul' ).listview('refresh');
+                    } , '20000');*/
+                    $('#page1 ul').append(strAppend); //追加元素
+                    $('#page1 ul').listview('refresh'); //渲染页面效果
+                }
+            });
+        });
+
+        // 刷新功能/查看更多
+        function getMore(type) {
+            if ('all' == type) {
+                var strAppend = '';
+                for (var i = 4; i < 10; i++) {
+                    strAppend += '<li><a href="#"><img src="/i/i0' + i + '.png"></a></li>';
+                }
+                $('#page2 ul').append(strAppend); //追加元素
+                $('#page2 ul').listview('refresh'); //渲染页面效果
+            } else if ('load' == type) {
+                var strAppend = '<ul data-role="listview" data-inset="true">';
+                for (var i = 4; i < 7; i++) {
+                    strAppend += '<li><a href="#"><img src="/i/i0' + i + '.png"></a></li>';
+                }
+                strAppend += '</ul>';
+                $('#page2 ul').remove();
+                $('#page2 [data-role="controlgroup"]').before(strAppend); //追加元素
+                $('#page2 [data-role="content"] ul').listview(); //渲染页面效果
+            }
+        }
+    </script>
+</body>
+
+</html>

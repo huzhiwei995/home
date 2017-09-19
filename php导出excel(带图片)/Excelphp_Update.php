@@ -24,7 +24,7 @@ class TestController extends Controller
 			$objActSheet->getColumnDimension("$letter[$i]")->setWidth(40);
 		}
 		//查询数据库
-		$stu = M ('yy_users');
+		$stu = M('yy_users');
 		$data = $stu -> select();
 		//循环将数据放入
 		foreach($data as $k=>$v){

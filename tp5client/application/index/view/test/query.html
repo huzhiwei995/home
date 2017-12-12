@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百万数据测试</title>
+</head>
+<body>
+	<div>
+		<ul>
+			{volist name='mode' id='user'}
+		    	<li> {$user.id}</li>
+			{/volist}
+		</ul>
+	</div>
+{$mode->render()}
+</body>
+</html>

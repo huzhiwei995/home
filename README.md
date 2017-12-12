@@ -16,4 +16,4 @@ php实用小功能
 
 [百度地图电子围栏](https://github.com/huzhiwei995/home/tree/master/Map)百度地图电子围栏实现，Code来自网络
 
-[api接口的加密与解密初中级别安全拥有时效性](https://github.com/huzhiwei995/home/tree/master/tp5client)
+[api接口的加密与解密初中级别安全拥有时效性](https://github.com/huzhiwei995/home/tree/master/tp5client)api接口的加密与解密初中级别安全拥有时效性

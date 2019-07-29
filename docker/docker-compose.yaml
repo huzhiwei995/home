@@ -1,0 +1,25 @@
+version: "3"
+services:
+
+  go: 
+    build: ./go
+    ports:
+      - "80:80"
+    volumes:
+      - ../src:/go/src
+    command: ping www.baidu.com
+
+  db: 
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_VERSION=latest
+    environment:
+      - MYSQL_DATABASE=anime
+      - MYSQL_USER=anime
+      - MYSQL_PASSWORD=anime
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"

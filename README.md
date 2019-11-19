@@ -17,5 +17,4 @@ php实用小功能
 
 [api接口的加密与解密初中级别安全拥有时效性](https://github.com/huzhiwei995/home/tree/master/tp5client)api接口的加密与解密初中级别安全拥有时效性
 
-docker环境排编，在docker-compose.yaml下运行 docker-compose up -d
-
+docker环境排编，在docker-compose.yaml下运行 docker-compose up -d 运行

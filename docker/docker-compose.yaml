@@ -7,7 +7,9 @@ services:
       - "80:80"
     volumes:
       - ../src:/go/src
-    command: ping www.baidu.com
+    stdin_open: true #打开标准输出 -i
+    tty: true # 打开 tty 会话 -t
+    privileged: true # 权限 比如创建文件夹之类的
 
   db: 
     build:
